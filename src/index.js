@@ -1,18 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import store from './store';
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
+//import store from './store';
+//import { Provider } from 'react-redux';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboard from "./routes/dashboard";
+import City from "./routes/city";
+import { Form } from "react-bootstrap";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Dashboard />,
+  },
+  {
+    path: "city",
+    element: <City />
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <Form.Control type="text"/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
