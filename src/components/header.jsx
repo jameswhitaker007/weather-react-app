@@ -1,12 +1,13 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Nav } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
+import SearchBarComponent from "./searchBarComponent";
 
-function NavbarComponent() {
+
+function Header() {
   return (
+    <>
     <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
         <Navbar.Brand href="#home">
           Weather App
         </Navbar.Brand>
@@ -28,9 +29,10 @@ function NavbarComponent() {
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
-      </Container>
     </Navbar>
+    <SearchBarComponent/>
+    </>
   );
 }
 
-export default NavbarComponent;
+export default Header;

@@ -4,29 +4,27 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 //import store from './store';
 //import { Provider } from 'react-redux';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./routes/dashboard";
 import City from "./routes/city";
 import { Form } from "react-bootstrap";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Dashboard />,
-  },
-  {
-    path: "city",
-    element: <City />
-  },
-]);
+import Header from './components/header';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Form.Control type="text"/>
-    <RouterProvider router={router} />
+    <Router>
+      <Header/> 
+      <Routes>
+        <Route path="/" Component={App}/>
+        <Route path="/city" Component={City}/>
+      </Routes>
+    </Router>
+    
+
   </React.StrictMode>
 );
 

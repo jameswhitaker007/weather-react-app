@@ -12,23 +12,6 @@ import { useSelector, useDispatch } from 'react-redux';
 //import {add} from './store'
 
 function App() {
-  const resultArray = [];
-  const input = "Tor";
-  //console.log(regexp.test('toron'));
-  
-
-  function sortData(data) {
-    //console.log(data.results);
-    data.results.forEach(element => {
-      //console.log(element.name);
-      const regex = RegExp('^Tor', 'i');
-      //console.log(regex.test(element.name));
-      if (regex.test(element.name)) {
-        resultArray.push(element);
-      }
-    });
-    console.log(resultArray);
-  }
 
   return (
     <>
