@@ -80,20 +80,18 @@ const getList = async (input) => {
 export default function DropDownListComponent(input) {
   return(<div>Hello</div>)
 }*/
+import { Stack } from "react-bootstrap";
 
 export default function DropDownListComponent(props) {
- const {list} = props;
- //console.log(list);
- 
- const listItems = list.map((city, index)=>
-  <li key={index}>{city}</li>
- )
-return(
-  <ul>
-    {listItems}
-  </ul>
-)
-
-  
-  
+  const { list, input} = props;
+  //console.log("List is: " + list);
+  console.log(input);
+  if (list == null || list == "" || list == []) {
+    return <></>;
+  }
+  const listItems = list.map((city, index) => <div key={index} className="p-2">
+    <strong>{city.substring(0, input.length)}</strong>
+    {city.substring(input.length)}
+    </div>);
+  return <div className="border border-2 mt-0 rounded-top">{listItems}</div>
 }
