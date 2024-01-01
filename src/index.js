@@ -16,15 +16,9 @@ import Header from './components/header';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Router>
-      <Header/> 
-      <Routes>
-        <Route path="/" Component={App}/>
-        <Route path="/city" Component={City}/>
-      </Routes>
-    </Router>
-    
 
+    
+    <App />
   </React.StrictMode>
 );
 

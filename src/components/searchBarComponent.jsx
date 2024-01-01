@@ -59,18 +59,17 @@ export default function SearchBarComponent() {
 
     const data = await response.json();
     const { results } = data;
-    //console.log(results);
+    console.log(results);
     const resultList = [];
     const regex = RegExp(`^${input}`, "i");
     for (let i = 0; i < results.length; i++) {
-      resultList.push(results[i].name);
+      resultList.push({name: results[i].name, lat: results[i].location.latitude, lon: results[i].location.longitude});
     }
     //console.log(resultList);
-    const uniqueResultsList = [...new Set(resultList)];
-    console.log(uniqueResultsList);
+    //const uniqueResultsList = [...new Set(resultList)];
+    //console.log(uniqueResultsList);
     setInput(e.target.value);
-    setList(uniqueResultsList);
-    
+    setList(resultList);
   };
 
   useEffect(function () {}, [input]);

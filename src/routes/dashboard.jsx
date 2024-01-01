@@ -1,8 +1,12 @@
+import Header from "../components/header";
 import SearchBarComponent from "../components/searchBarComponent";
 import { Form } from "react-bootstrap";
 
 export default function Dashboard() {
 return(
-    <Form.Control type="text"/>
+    <>
+    
+    <h1>Dashboard</h1>
+    </>
 )
 }
