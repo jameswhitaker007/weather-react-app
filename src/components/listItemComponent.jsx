@@ -18,7 +18,7 @@ export default function List_item(props) {
   function navigateHandler() {
     navigate("/city");
   }
- /*
+  /*
   useEffect(() => {
     //const listItem = document.getElementById(city);
     //const hiddenValue = document.getElementById(city+index).value;
@@ -32,32 +32,25 @@ export default function List_item(props) {
     });
   }, [city]);*/
   return (
-    <div
-      key={index}
-      className="p-2"
-      id={city.name}
-      ref={refDiv}
-      data-lat={city.lat}
-      data-lon={city.lon}
+    <Link
+      to={`/city/${city.lat}/${city.lon}`}
+      style={{ textDecoration: "none", display: "block" }}
     >
-      <NavLink to={`/city/${city.lat}/${city.lon}`} style={{ textDecoration: "none" }}>
-        <strong>{city.name.substring(0, inputLength)}</strong>
-        {city.name.substring(inputLength)}
-        <input type="hidden" value={city.name} id={city.name + "HiddenValue"} />
-      </NavLink>
-    </div>
+      <strong>{city.name.substring(0, inputLength)}</strong>
+      {city.name.substring(inputLength)}
+      <input type="hidden" value={city.name} id={city.name + "HiddenValue"} />
+    </Link>
   );
 }
 
 export async function loader({ request, params }) {
   const lat = params.lat;
   const lon = params.lon;
-  const APIKey = 'b0d840881f772cb22ba10f3d2a717b1e';
-  console.log("lat= " + lat +", lon= " + lon);
+  const APIKey = "b0d840881f772cb22ba10f3d2a717b1e";
+  console.log("lat= " + lat + ", lon= " + lon);
 
   const response = await fetch(
-  `http://pro.openweathermap.org/data/2.5/onecall?lat=${lon}&lon=${lon}&units=metric&APPID=${APIKey}`
-   
+    `http://pro.openweathermap.org/data/2.5/onecall?lat=${lon}&lon=${lon}&units=metric&APPID=${APIKey}`
   );
 
   if (!response.ok) {
@@ -66,7 +59,7 @@ export async function loader({ request, params }) {
     //console.log(response);
     //console.log(response.json());
     const data = await response.json();
-   console.log(data);
+    console.log(data);
     //response.then(result => console.log(result.data));
     return data;
   }

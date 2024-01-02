@@ -48,7 +48,7 @@ export default function SearchBarComponent() {
       })
     );
     const response = await fetch(
-      `https://parseapi.back4app.com/classes/City?limit=20&where=${where}`,
+      `https://parseapi.back4app.com/classes/City?limit=20&include=country&keys=name,country,country.name,population,location,cityId,adminCode&where=${where}`,
       {
         headers: {
           "X-Parse-Application-Id": "mxsebv4KoWIGkRntXwyzg6c6DhKWQuit8Ry9sHja", // This is the fake app's application id
@@ -58,6 +58,7 @@ export default function SearchBarComponent() {
     );
 
     const data = await response.json();
+    //console.log(data);
     const { results } = data;
     console.log(results);
     const resultList = [];
@@ -78,6 +79,7 @@ export default function SearchBarComponent() {
     <>
       <Container>
         <Row>
+          <div style={{position: "relative"}}>
           <Form className="mt-3 p-0">
             <InputGroup>
               <Form.Control
@@ -91,6 +93,7 @@ export default function SearchBarComponent() {
             </InputGroup>
           </Form>
           <DropDownListComponent list={list} input={input} />
+          </div>
         </Row>
       </Container>
     </>

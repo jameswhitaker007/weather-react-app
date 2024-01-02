@@ -18,7 +18,7 @@ export default function DropDownListComponent(props) {
   //return <div className="border border-2 mt-0 rounded-top"></div>;
 
   return (
-    <div className="border border-2 mt-0 rounded-top">
+    <div className="border border-2 mt-0 rounded-top p-0" style={{position: "absolute", width: '100%', backgroundColor: 'grey'}}>
       {list.map((city, index) => {
         return (
           <List_item key={index}

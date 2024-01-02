@@ -1,4 +1,3 @@
-import { createStore } from "redux/dist/redux";
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 const initialState = { favorites: [], recents: [] };
@@ -19,36 +18,6 @@ const citySlice = createSlice({
         }
     }
 });
-
-
-
-/*
-const weatherReducer = (state = initialState, action) => {
-    if (action.type === 'addFavorite') {
-        return {
-            favorites: state.favorites.push(action.city),
-            recents: state.recents
-        }
-    }
-    if (action.type === 'addRecent') {
-        /*
-        let recents = state.recents.unshift(action.city);
-        if (recents.length > 10) {
-            recents = recents.slice(0, 9);
-        }
-        return {
-            favorites: state.favorites,
-            recents: state.recents
-        }// --
-
-        return {
-            favorites: state.favorites,
-            recents: state.recents.unshift(action.city).slice(0, sliceIfier(state.recents.length))
-        }
-
-    }
-    return state;
-};*/
 
 export const cityActions = citySlice.actions
 
