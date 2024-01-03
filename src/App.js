@@ -20,6 +20,10 @@ import ErrorPage from './routes/Error';
 import CityRootLayout from './routes/cityRoot';
 import CityDetails from './routes/cityDetails';
 import { loader as cityDetailsLoader } from './components/listItemComponent';
+
+
+
+
 const router = createBrowserRouter([
   {
     path: '/',

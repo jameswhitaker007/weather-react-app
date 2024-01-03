@@ -12,6 +12,32 @@ export default function SearchBarComponent() {
   const [input, setInput] = useState("Toronto");
   const [list, setList] = useState("");
 
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      //e.stopImmediatePropagation();
+      //const id = toString(e.target.id);
+      // console.log(e.target.id);
+      const string = e.target.className.toString();
+      //console.log(string);
+      const position = string.search(/search-element/i);
+      const regex = new RegExp();
+      if (position === -1) {
+        //console.log(e.target.id);
+        setList([]);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      const id = e.target.id.toString();
+      console.log(id);
+      if (id === "searchBar") {
+        getList(e);
+      }
+    });
+  }, []);
+
   /*
   const changeInput = (e) => {
     setInput(e.target.value);
@@ -23,6 +49,10 @@ export default function SearchBarComponent() {
     getList();
     //console.log(input);
   };*/
+
+  const closeList = () => {
+    setList([]);
+  };
 
   const getList = async (e) => {
     const targetInput = e.target.value;
@@ -64,7 +94,11 @@ export default function SearchBarComponent() {
     const resultList = [];
     const regex = RegExp(`^${input}`, "i");
     for (let i = 0; i < results.length; i++) {
-      resultList.push({name: results[i].name, lat: results[i].location.latitude, lon: results[i].location.longitude});
+      resultList.push({
+        name: results[i].name,
+        lat: results[i].location.latitude,
+        lon: results[i].location.longitude,
+      });
     }
     //console.log(resultList);
     //const uniqueResultsList = [...new Set(resultList)];
@@ -77,22 +111,25 @@ export default function SearchBarComponent() {
 
   return (
     <>
-      <Container>
+      <Container className="mt-3">
         <Row>
-          <div style={{position: "relative"}}>
-          <Form className="mt-3 p-0">
-            <InputGroup>
-              <Form.Control
-                type="text"
-                id="searchBar"
-                onChange={getList}
-                className="me-0"
-              />
+          <div
+            style={{ position: "relative", padding: "0px", margin: "0px" }}
+            className="search-element"
+          >
+            <Form.Control
+              type="text"
+              id="searchBar"
+              onChange={getList}
+              className="me-0 search-element"
+              placeholder="Enter city"
+            />
 
-              <Button type="submit">Submit</Button>
-            </InputGroup>
-          </Form>
-          <DropDownListComponent list={list} input={input} />
+            <DropDownListComponent
+              list={list}
+              input={input}
+              className="search-element"
+            />
           </div>
         </Row>
       </Container>
