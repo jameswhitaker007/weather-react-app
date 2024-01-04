@@ -21,9 +21,6 @@ import CityRootLayout from './routes/cityRoot';
 import CityDetails from './routes/cityDetails';
 import { loader as cityDetailsLoader } from './components/listItemComponent';
 
-
-
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,13 +29,13 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard /> },
       {
-        path: 'city', element: <CityRootLayout />,
+        path: 'city',
         children: [
           {
             index: true,
             element: <City />
           },
-          { path: ':lat/:lon', element: <CityDetails />, loader: cityDetailsLoader }
+          { path: ':name/:country/:lat/:lon', element: <CityDetails />, loader: cityDetailsLoader }
         ]
       },
 
@@ -46,25 +43,6 @@ const router = createBrowserRouter([
   }
 
 ])
-
-/*
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Dashboard/>,
-    errorElement: <ErrorPage />
-  },
-  {
-    path: '/city',
-    element: <City />
-  },
-  {
-    path: '/city/:lat/:lon',
-    element: <City />,
-    
-  }
-  
-])*/
 
 function App() {
 

@@ -14,15 +14,10 @@ export default function SearchBarComponent() {
 
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      //e.stopImmediatePropagation();
-      //const id = toString(e.target.id);
-      // console.log(e.target.id);
       const string = e.target.className.toString();
-      //console.log(string);
       const position = string.search(/search-element/i);
       const regex = new RegExp();
       if (position === -1) {
-        //console.log(e.target.id);
         setList([]);
       }
     });
@@ -38,38 +33,23 @@ export default function SearchBarComponent() {
     });
   }, []);
 
-  /*
-  const changeInput = (e) => {
-    setInput(e.target.value);
-    if (input == "" || input == null) {
-      setList((list) => null);
-      return;
-    }
-    //console.log(document.getElementById('searchBar').value);
-    getList();
-    //console.log(input);
-  };*/
-
   const closeList = () => {
     setList([]);
   };
 
   const getList = async (e) => {
     const targetInput = e.target.value;
-    //setInput(e.target.value);
     if (targetInput == "" || targetInput == null) {
       setList([]);
       return;
     }
     const trimmedInput = targetInput.trim();
     const words = trimmedInput.split(" ");
-    //console.log(words);
     for (let i = 0; i < words.length; i++) {
       words[i] = words[i][0].toUpperCase() + words[i].substr(1);
     }
     const conditionedInput = words.join(" ");
     console.log(input);
-    //const conditionedInput = input[0].toUpperCase() + input.slice(1);
     const where = encodeURIComponent(
       JSON.stringify({
         name: {
@@ -88,7 +68,6 @@ export default function SearchBarComponent() {
     );
 
     const data = await response.json();
-    //console.log(data);
     const { results } = data;
     console.log(results);
     const resultList = [];
@@ -96,13 +75,13 @@ export default function SearchBarComponent() {
     for (let i = 0; i < results.length; i++) {
       resultList.push({
         name: results[i].name,
+        cityID: results[i].cityID,
+        country: results[i].country.name,
         lat: results[i].location.latitude,
         lon: results[i].location.longitude,
       });
     }
     //console.log(resultList);
-    //const uniqueResultsList = [...new Set(resultList)];
-    //console.log(uniqueResultsList);
     setInput(e.target.value);
     setList(resultList);
   };

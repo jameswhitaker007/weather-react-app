@@ -2,9 +2,9 @@ import { useParams, Link } from "react-router-dom";
 import { useLoaderData, json } from "react-router-dom";
 
 export default function City() {
-  const params = useParams();
-  const resData = useLoaderData();
-  const data = resData.events; //events is filler for now
+  //const params = useParams();
+  //const resData = useLoaderData();
+  //const data = resData.events; //events is filler for now
   //params.params;
 
   return (
@@ -16,7 +16,7 @@ export default function City() {
     </>
   );
 }
-
+ /*
 export async function loader() {
   const response = await fetch(
     `https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}`
@@ -30,4 +30,4 @@ export async function loader() {
     //return resData;
     return response;
   }
-}
+}*/

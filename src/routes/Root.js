@@ -1,5 +1,6 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import Header from "../components/header";
+import { Container } from "react-bootstrap";
 
 function RootLayout() {
 const navigation = useNavigation();
@@ -10,7 +11,9 @@ const navigation = useNavigation();
         <>
             <Header />
             {navigation.state === 'loading' && <p>Loading ...</p>}
+            <Container>
             <Outlet />
+            </Container>
         </>
     )
 }
