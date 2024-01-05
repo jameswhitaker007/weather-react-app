@@ -1,9 +1,0 @@
-function useCapitalizeWords(words) {
-    const wordArr = words.split(" ");
-    for (let i = 0; i < wordArr.length; i++) {
-        wordArr[i] = wordArr[i][0].toUpperCase() + wordArr[i].substr(1);
-    }
-    return wordArr.join(' ');
-}
-
-export default useCapitalizeWords;

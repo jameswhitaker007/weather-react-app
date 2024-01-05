@@ -14,7 +14,7 @@ export default function List_item(props) {
 
   return (
     <Link
-      to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}`}
+    to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}`}
       style={{ textDecoration: "none", display: "block" }}
     >
       <strong>{city.name.substring(0, inputLength)}</strong>
@@ -33,7 +33,7 @@ export async function loader({ request, params }) {
   console.log("lat= " + lat + ", lon= " + lon);
 
   const response = await fetch(
-    `http://pro.openweathermap.org/data/2.5/onecall?lat=${lon}&lon=${lon}&units=metric&APPID=${APIKey}`
+    `http://pro.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=${APIKey}`
   );
 
   if (!response.ok) {

@@ -75,7 +75,7 @@ export default function SearchBarComponent() {
     for (let i = 0; i < results.length; i++) {
       resultList.push({
         name: results[i].name,
-        cityID: results[i].cityID,
+        id: results[i].cityId,
         country: results[i].country.name,
         lat: results[i].location.latitude,
         lon: results[i].location.longitude,
