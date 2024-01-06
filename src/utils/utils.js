@@ -19,7 +19,14 @@ export function useCapitalizeWords(words) {
     return wordArr.join(' ');
 }
 
-
+export const useGetTime = (dt) => {
+    return new Date(dt * 1000).toLocaleString([], {
+        hour: 'numeric',
+        hour12: true,
+        hourCycle: 'h12',
+        minute: 'numeric'
+    })
+}
 
 export const useGetHour = (dt) => {
     const timestamp = dt * 1000;

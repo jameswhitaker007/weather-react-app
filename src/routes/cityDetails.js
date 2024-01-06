@@ -1,7 +1,7 @@
 import { useLoaderData, json } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { cityActions } from "../store/index";
-import { Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -23,16 +23,20 @@ import { useGetHour } from "../utils/utils";
 import { useGetIcon } from "../utils/utils";
 import { useCapitalizeWords } from "../utils/utils";
 import HourComponent from "../components/hourComponent";
-import {CardGroup} from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 import { useGetDay } from "../utils/utils";
 import DayComponent from "../components/dayComponent";
-
+import humidityIcon from '../assets/humidity.png';
+import windIcon from '../assets/wind_small.png';
+import { useGetTime } from "../utils/utils";
 
 function CityDetails() {
     const data = useLoaderData();
     console.log(data);
 
-    console.log(useGetHour(1704423600));
+    //console.log(useGetHour(1704423600));
+
+    console.log("The time is: " + useGetTime(1704423600));
 
     const isDaytime = data.data.current.dt >= data.data.current.sunrise
         && data.data.current.dt < data.data.current.sunset;
@@ -69,16 +73,55 @@ function CityDetails() {
                 </div>
             </Row>
             <Row>
-                <div style={{overflow: 'auto', whiteSpace: 'nowrap'}}>
-                {data.data.hourly.map((hour, index) => {
-                    return <HourComponent hour={hour} key={index}/>
-                })}
+                <div style={{ overflow: 'auto', whiteSpace: 'nowrap' }}>
+                    {data.data.hourly.map((hour, index) => {
+                        return <HourComponent hour={hour} key={index} />
+                    })}
                 </div>
             </Row>
             <Row className="mt-5">
                 {data.data.daily.map((day, index) => {
-                    return <DayComponent day={day} index={index} key={index}/>
+                    return <DayComponent day={day} index={index} key={index} />
                 })}
+            </Row>
+            <Row className="mt-3">
+                <Col xs={6}>
+                    <div style={{ width: '100%', textAlign: 'center' }}>
+                        <div>
+                            <img src="https://openweathermap.org/img/wn/01d@4x.png" />
+                        </div>
+                        <p className="mb-1">UV index</p>
+                        <p>{data.data.current.uvi}</p>
+                    </div></Col>
+                <Col xs={6}>
+                    <div style={{ width: '100%', textAlign: 'center' }}>
+                        <img src={humidityIcon} />
+                        <p className="mb-1">Humidity</p>
+                        <p>{data.data.current.humidity}&#37;</p>
+                    </div>
+
+                </Col>
+                <Col xs={6}>
+                    <div style={{ width: '100%', textAlign: 'center' }}>
+                        <img src={windIcon} />
+                        <p className="mb-1">Wind</p>
+                        <p>{data.data.current.wind_speed} km/h</p>
+                    </div>
+                </Col>
+                <Col xs={6}>
+                    <Container>
+                        <Row>
+                            <Col xs={{ span: 3, offset: 3 }}>
+                                <div className="d-flex justify-content-center" style={{ width: '100%' }}>
+                                    <img src="https://openweathermap.org/img/wn/01d@4x.png" />
+                                </div>
+                                <p className="d-flex justify-content-center mb-1">Sunrise</p>
+                                <p className="d-flex justify-content-center"></p>
+                            </Col>
+                        </Row>
+                    </Container>
+                </Col>
+
             </Row>
         </>
     )
