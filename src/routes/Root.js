@@ -1,18 +1,21 @@
 import { Outlet, useNavigation } from "react-router-dom";
 import Header from "../components/header";
 import { Container } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
 function RootLayout() {
-const navigation = useNavigation();
+    const navigation = useNavigation();
 
-//navigation.state === ''
+    //navigation.state === ''
 
     return (
         <>
             <Header />
-            {navigation.state === 'loading' && <p>Loading ...</p>}
             <Container>
-            <Outlet />
+                {navigation.state === 'loading' && <div id="overlay">
+                    <Spinner animation="border" variant="info" className="spinner" />
+                </div>}
+                <Outlet />
             </Container>
         </>
     )

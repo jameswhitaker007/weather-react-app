@@ -18,7 +18,7 @@ export default function DayComponent({ day, index }) {
             style={{ marginRight: ".5rem" }}
             height={13}
           />
-          {Math.round(day.pop)}
+          {Math.round(day.pop * 100)}
           <span>&#37;</span>
         </Col>
         <Col className="d-flex align-items-center justify-content-center">

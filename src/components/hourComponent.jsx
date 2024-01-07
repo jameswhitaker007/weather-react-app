@@ -21,7 +21,7 @@ export default function HourComponent({ hour }) {
           <Card.Text>{Math.round(hour.temp)}&#176;</Card.Text>
           <Card.Text className="d-flex align-items-baseline">
             <img src={percipitationIcon} height={13} style={{marginRight: '.3rem'}}/>
-            {Math.round(hour.pop)}<span>&#37;</span>
+            {Math.round(hour.pop * 100)}<span>&#37;</span>
           </Card.Text>
         </Card.Body>
       </Card>

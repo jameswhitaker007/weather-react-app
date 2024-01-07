@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             index: true,
             element: <City />
           },
-          { path: ':name/:country/:lat/:lon', element: <CityDetails />, loader: cityDetailsLoader}
+          { path: ':name/:country/:lat/:lon/:id', element: <CityDetails />, loader: cityDetailsLoader}
         ]
       },
 

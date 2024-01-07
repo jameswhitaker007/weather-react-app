@@ -14,7 +14,7 @@ export default function List_item(props) {
 
   return (
     <Link
-    to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}`}
+    to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}/${city.id}`}
       style={{ textDecoration: "none", display: "block" }}
     >
       <strong>{city.name.substring(0, inputLength)}</strong>
@@ -28,6 +28,7 @@ export async function loader({ request, params }) {
   const lat = params.lat;
   const lon = params.lon;
   const city = params.name;
+  const id = params.id;
   const country = params.country;
   const APIKey = "b0d840881f772cb22ba10f3d2a717b1e";
   console.log("lat= " + lat + ", lon= " + lon);
@@ -43,6 +44,7 @@ export async function loader({ request, params }) {
     const conditionedData = {
       helperData: {
         city,
+        id,
         country,
         lat,
         lon,

@@ -29,35 +29,72 @@ import DayComponent from "../components/dayComponent";
 import humidityIcon from '../assets/humidity.png';
 import windIcon from '../assets/wind_small.png';
 import { useGetTime } from "../utils/utils";
+import { Link } from "react-router-dom";
+import { Heart } from "react-bootstrap-icons";
+import { HeartFill } from "react-bootstrap-icons";
 
 function CityDetails() {
+    const [favorited, setFavorited] = useState(false);
     const data = useLoaderData();
-    console.log(data);
-
-    //console.log(useGetHour(1704423600));
-
-    console.log("The time is: " + useGetTime(1704423600));
-
+    //console.log(data);
     const isDaytime = data.data.current.dt >= data.data.current.sunrise
         && data.data.current.dt < data.data.current.sunset;
-
-
-
     const dispatch = useDispatch();
     const favorites = useSelector(state => state.favorites);
     const recents = useSelector(state => state.recents);
+    console.log(favorites);
 
-    const addFavoriteHandler = () => {
-        dispatch(cityActions.addFavorites)
+
+    const isFavorited = () => {
+        console.log(favorites);
+        let found = false;
+        favorites.map((favorite) => {
+            console.log('favorite.id: ' + favorite.id + " helperDataId: " + data.helperData.id);
+            if (favorite.id === data.helperData.id) {
+                found = true;
+                return
+            }
+        });
+
+        console.log(found);
+        return found;
     }
 
-    dispatch(cityActions.addRecents);
+    useEffect(() => {
+        setFavorited(isFavorited());
+    },[favorites])
+
+    useEffect(() => {
+        setFavorited(isFavorited());
+    }, [data])
+
+    function addRecentHandler() {
+        dispatch(cityActions.addRecents(data.helperData));
+    }
+
+    useEffect(() => {
+        addRecentHandler();
+    }, [data])
+
+
+    function addFavoriteHandler() {
+        //setFavorited(true);
+        dispatch(cityActions.addFavorites(data.helperData));
+        console.log('inside addFavorite function');
+        console.log(favorites);
+    }
+
+    function removeFavoriteHandler() {
+        //setFavorited(false);
+        dispatch(cityActions.removeFavorites(data.helperData.id));
+        console.log('inside removeFavorite function');
+        console.log(favorites);
+    }
 
     const capitalizedWeatherDescription = useCapitalizeWords(data.data.current.weather[0].description);
     const icon = useGetIcon(data.data.current.weather[0].id, isDaytime);
-    console.log("icon is: " + icon);
 
-    console.log("the day is: " + useGetDay(1704474000));
+    console.log(recents);
 
     return (
         <>
@@ -70,6 +107,8 @@ function CityDetails() {
                         <span>&#176;</span>{' Feels like ' + Math.round(data.data.current.feels_like)}
                         <span>&#176;</span></p>
                     <img src={icon} />
+                    {favorited ? <button style={{ border: 0, backgroundColor: 'transparent' }} onClick={removeFavoriteHandler}><HeartFill size={40} /></button>
+                        : <button style={{ border: 0, backgroundColor: 'transparent' }} onClick={addFavoriteHandler}><Heart size={40} /></button>}
                 </div>
             </Row>
             <Row>
@@ -116,7 +155,14 @@ function CityDetails() {
                                     <img src="https://openweathermap.org/img/wn/01d@4x.png" />
                                 </div>
                                 <p className="d-flex justify-content-center mb-1">Sunrise</p>
-                                <p className="d-flex justify-content-center"></p>
+                                <p className="d-flex justify-content-center">{useGetTime(data.data.current.sunrise)}</p>
+                            </Col>
+                            <Col xs={{ span: 3 }}>
+                                <div className="d-flex justify-content-center">
+                                    <img src="https://openweathermap.org/img/wn/01n@4x.png" />
+                                </div>
+                                <p className="d-flex justify-content-center">Sunset</p>
+                                <p className="d-flex justify-content-center">{useGetTime(data.data.current.sunset)}</p>
                             </Col>
                         </Row>
                     </Container>

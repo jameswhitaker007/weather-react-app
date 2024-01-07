@@ -26,7 +26,7 @@ export default function SearchBarComponent() {
   useEffect(() => {
     document.addEventListener("click", (e) => {
       const id = e.target.id.toString();
-      console.log(id);
+      //console.log(id);
       if (id === "searchBar") {
         getList(e);
       }
