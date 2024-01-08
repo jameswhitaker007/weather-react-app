@@ -31,7 +31,7 @@ export async function loader({ request, params }) {
   const APIKey = "b0d840881f772cb22ba10f3d2a717b1e";
 
   const response = await fetch(
-    `http://pro.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=${APIKey}`
+    `https://pro.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=${APIKey}`
   );
 
   if (!response.ok) {
