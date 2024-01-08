@@ -99,17 +99,24 @@ function CityDetails() {
     return (
         <>
             <Row className="mt-3">
-                <div className="jumbotron">
-                    <p>{Math.round(data.data.current.temp)}<span>&#176;</span></p>
-                    <p>{capitalizedWeatherDescription}</p>
-                    <p>{data.helperData.city}</p>
-                    <p>{Math.round(data.data.daily[0].temp.min)}<span>&#176;</span>{'/' + Math.round(data.data.daily[0].temp.max)}
+                <div className="jumbotron d-flex" style={{height: '100%'}}>
+                    <div className="d-flex align-self-start flex-column">
+                    <p className="fs-1 fw-semibold mb-2">{Math.round(data.data.current.temp)}<span>&#176;</span></p>
+                    <p className="fs-5 fw-medium">{capitalizedWeatherDescription}</p>
+                    <p className="fs-6 fw-medium">{data.helperData.city + ' ' + data.helperData.country}</p>
+                    <p className="align-self-end">{Math.round(data.data.daily[0].temp.min)}<span>&#176;</span>{'/' + Math.round(data.data.daily[0].temp.max)}
                         <span>&#176;</span>{' Feels like ' + Math.round(data.data.current.feels_like)}
                         <span>&#176;</span></p>
-                    <img src={icon} />
-                    {favorited ? <button style={{ border: 0, backgroundColor: 'transparent' }} onClick={removeFavoriteHandler}><HeartFill size={40} /></button>
-                        : <button style={{ border: 0, backgroundColor: 'transparent' }} onClick={addFavoriteHandler}><Heart size={40} /></button>}
+                    </div>
+                    
+
+                    <div className="align-self-center ms-auto"><img src={icon} width={350}/></div>
+                    <div className="ms-auto">
+                    {favorited ? <button className="ms-auto align-self-end" style={{ border: 0, backgroundColor: 'transparent' }} onClick={removeFavoriteHandler}><HeartFill size={40} /></button>
+                        : <button className="ms-auto align-self-end" style={{ border: 0, backgroundColor: 'transparent' }} onClick={addFavoriteHandler}><Heart size={40} /></button>}
                 </div>
+                </div>
+                
             </Row>
             <Row>
                 <div style={{ overflow: 'auto', whiteSpace: 'nowrap' }}>
@@ -118,39 +125,42 @@ function CityDetails() {
                     })}
                 </div>
             </Row>
-            <Row className="mt-5">
+            <Row className="mt-5" style={{backgroundColor: '#fdebd8'}}>
+                <div style={{borderRadius: '.3rem', border: '1px solid rgb(142, 142, 142)'}}>
                 {data.data.daily.map((day, index) => {
                     return <DayComponent day={day} index={index} key={index} />
                 })}
+                </div>
             </Row>
             <Row className="mt-3">
-                <Col xs={6}>
-                    <div style={{ width: '100%', textAlign: 'center' }}>
+                <Col xs={6} className="mb-3" style={{paddingLeft: 0}}>
+                    <div style={{ width: '100%', textAlign: 'center', borderRadius: '.3rem', border: '1px solid rgb(142, 142, 142)', backgroundColor: 'aliceblue'}}>
                         <div>
                             <img src="https://openweathermap.org/img/wn/01d@4x.png" />
                         </div>
                         <p className="mb-1">UV index</p>
                         <p>{data.data.current.uvi}</p>
                     </div></Col>
-                <Col xs={6}>
-                    <div style={{ width: '100%', textAlign: 'center' }}>
+                <Col xs={6} className="mb-3" style={{paddingRight: 0}}>
+                    <div style={{ width: '100%', textAlign: 'center', borderRadius: '.3rem', border: '1px solid rgb(142, 142, 142)', backgroundColor: 'aliceblue'}}>
                         <img src={humidityIcon} />
                         <p className="mb-1">Humidity</p>
                         <p>{data.data.current.humidity}&#37;</p>
                     </div>
 
                 </Col>
-                <Col xs={6}>
-                    <div style={{ width: '100%', textAlign: 'center' }}>
+                <Col xs={6} className="mb-3" style={{paddingLeft: 0}}>
+                    <div style={{ width: '100%', textAlign: 'center', borderRadius: '.3rem', border: '1px solid rgb(142, 142, 142)', backgroundColor: 'aliceblue' }}>
                         <img src={windIcon} />
                         <p className="mb-1">Wind</p>
                         <p>{data.data.current.wind_speed} km/h</p>
                     </div>
                 </Col>
-                <Col xs={6}>
-                    <Container>
+                <Col xs={6} className="mb-3" style={{paddingRight: 0}}>
+                    <Container style={{borderRadius: '.3rem', border: '1px solid rgb(142, 142, 142)', backgroundColor: 'aliceblue'}}>
                         <Row>
                             <Col xs={{ span: 3, offset: 3 }}>
+                               
                                 <div className="d-flex justify-content-center" style={{ width: '100%' }}>
                                     <img src="https://openweathermap.org/img/wn/01d@4x.png" />
                                 </div>
@@ -161,7 +171,7 @@ function CityDetails() {
                                 <div className="d-flex justify-content-center">
                                     <img src="https://openweathermap.org/img/wn/01n@4x.png" />
                                 </div>
-                                <p className="d-flex justify-content-center">Sunset</p>
+                                <p className="d-flex justify-content-center mb-1">Sunset</p>
                                 <p className="d-flex justify-content-center">{useGetTime(data.data.current.sunset)}</p>
                             </Col>
                         </Row>

@@ -12,7 +12,9 @@ export default function HourComponent({ hour }) {
         style={{
           width: "18rem",
           display: "inline-block",
-          backgroundColor: "lightgray",
+          backgroundColor: '#69778b',
+          marginRight: '.5rem',
+          color: 'white'
         }}
       >
         <Card.Body>

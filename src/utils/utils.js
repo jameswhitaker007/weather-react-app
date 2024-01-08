@@ -91,3 +91,10 @@ export const useGetDay = (dt) => {
     const day = new Date(dt * 1000).getDay();
     return weekday[day];
 }
+
+export const useGetDate = () => {
+    return new Date().toLocaleString([],{
+        dateStyle: 'medium'
+
+    })
+}

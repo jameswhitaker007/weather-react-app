@@ -13,7 +13,7 @@ export default function List_item(props) {
   }
 
   return (
-    <Link
+    <Link className="listItem"
     to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}/${city.id}`}
       style={{ textDecoration: "none", display: "block" }}
     >
