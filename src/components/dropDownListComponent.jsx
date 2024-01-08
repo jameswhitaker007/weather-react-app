@@ -9,7 +9,13 @@ export default function DropDownListComponent(props) {
   return (
     <div
       className="border border-2 mt-0 rounded-top p-0"
-      style={{ position: "absolute", width: "100%", backgroundColor: "grey", zIndex: "1000" }}
+      style={{
+        position: "absolute",
+        width: "100%",
+        backgroundColor: "grey",
+        zIndex: "1000",
+        backgroundColor: "#1e2737",
+      }}
     >
       {list.map((city, index) => {
         return (

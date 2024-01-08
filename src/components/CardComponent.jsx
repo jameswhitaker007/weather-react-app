@@ -13,15 +13,15 @@ export default function CardComponent({ item }) {
             width: "18rem",
             display: "inline-block",
             backgroundColor: "lightgray",
-            marginRight: '.5rem',
-            backgroundColor: '#5a6a7a',
-            color: 'white'
+            marginRight: ".5rem",
+            backgroundColor: "#5a6a7a",
+            color: "white",
           }}
         >
           <Card.Body>
             <Card.Title>{item.city}</Card.Title>
             <Card.Text>{item.country}</Card.Text>
-            <Card.Text></Card.Text>
+            <Card.Text>{item.id}</Card.Text>
           </Card.Body>
         </Card>
       </Link>

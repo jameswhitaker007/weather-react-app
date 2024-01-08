@@ -12,9 +12,9 @@ export default function HourComponent({ hour }) {
         style={{
           width: "18rem",
           display: "inline-block",
-          backgroundColor: '#69778b',
-          marginRight: '.5rem',
-          color: 'white'
+          backgroundColor: "#69778b",
+          marginRight: ".5rem",
+          color: "white",
         }}
       >
         <Card.Body>
@@ -22,8 +22,13 @@ export default function HourComponent({ hour }) {
           <img src={srcURL} />
           <Card.Text>{Math.round(hour.temp)}&#176;</Card.Text>
           <Card.Text className="d-flex align-items-baseline">
-            <img src={percipitationIcon} height={13} style={{marginRight: '.3rem'}}/>
-            {Math.round(hour.pop * 100)}<span>&#37;</span>
+            <img
+              src={percipitationIcon}
+              height={13}
+              style={{ marginRight: ".3rem" }}
+            />
+            {Math.round(hour.pop * 100)}
+            <span>&#37;</span>
           </Card.Text>
         </Card.Body>
       </Card>

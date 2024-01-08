@@ -1,10 +1,7 @@
-import { useEffect, useState, useRef } from "react";
 import { Link, json, useNavigate, NavLink } from "react-router-dom";
-import City from "../routes/city";
 
 export default function List_item(props) {
   const { index, city, inputLength } = props;
-  const refDiv = useRef();
 
   const navigate = useNavigate();
 
@@ -13,9 +10,10 @@ export default function List_item(props) {
   }
 
   return (
-    <Link className="listItem"
-    to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}/${city.id}`}
-      style={{ textDecoration: "none", display: "block" }}
+    <Link
+      className="listItem"
+      to={`/city/${city.name}/${city.country}/${city.lat}/${city.lon}/${city.id}`}
+      style={{ textDecoration: "none", display: "block", color: "white" }}
     >
       <strong>{city.name.substring(0, inputLength)}</strong>
       {city.name.substring(inputLength) + " " + city.country}
@@ -31,7 +29,6 @@ export async function loader({ request, params }) {
   const id = params.id;
   const country = params.country;
   const APIKey = "b0d840881f772cb22ba10f3d2a717b1e";
-  console.log("lat= " + lat + ", lon= " + lon);
 
   const response = await fetch(
     `http://pro.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&APPID=${APIKey}`
@@ -51,7 +48,6 @@ export async function loader({ request, params }) {
       },
       data,
     };
-    console.log(conditionedData);
     return conditionedData;
   }
 }

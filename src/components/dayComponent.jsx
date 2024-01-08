@@ -11,7 +11,9 @@ export default function DayComponent({ day, index }) {
   return (
     <>
       <Row className="m-0">
-        <Col xs={8} className="d-flex align-items-center justify-content-start">{d}</Col>
+        <Col xs={8} className="d-flex align-items-center justify-content-start">
+          {d}
+        </Col>
         <Col className="d-flex align-items-center justify-content-start">
           <img
             src={percipitationIcon}
