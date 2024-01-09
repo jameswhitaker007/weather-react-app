@@ -126,7 +126,7 @@ function CityDetails() {
                 </div>
             </Row>
             <Row className="mt-5" style={{backgroundColor: '#fdebd8'}}>
-                <div style={{borderRadius: '.3rem', border: '1px solid rgb(142, 142, 142)'}}>
+                <div style={{borderRadius: '.3rem', border: '1px solid rgb(184 178 172'}}>
                 {data.data.daily.map((day, index) => {
                     return <DayComponent day={day} index={index} key={index} />
                 })}

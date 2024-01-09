@@ -11,7 +11,7 @@ export default function Dashboard() {
   const favorites = useSelector((state) => state.favorites);
   const recents = useSelector((state) => state.recents);
   console.log(favorites);
-  const APIKey = "b0d840881f772cb22ba10f3d2a717b1e";
+  const APIKey = process.env.REACT_APP_API_KEY;
   const [favoriteArr, setFavoriteArr] = useState([]);
   const [recentsArr, setRecentsArr] = useState([]);
 
