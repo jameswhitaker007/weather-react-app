@@ -62,3 +62,5 @@ This project is open-sourced under the MIT License. See the LICENSE file for mor
 ---
 
 Feel free to adjust the content to match your project's specific details or requirements further!
+![Screenshot 2024-03-31 145905](https://github.com/jameswhitaker007/weather-react-app/assets/138829204/5f5a8d96-ee6c-4010-ad78-3f8e80656f54)
+![Screenshot 2024-03-31 150127](https://github.com/jameswhitaker007/weather-react-app/assets/138829204/5643b3f3-9b3b-4f3a-855f-c263990b8e27)
